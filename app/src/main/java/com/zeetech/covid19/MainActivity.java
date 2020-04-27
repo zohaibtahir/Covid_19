@@ -2,8 +2,10 @@ package com.zeetech.covid19;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -21,6 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
     private TextView _worldDataTextView;
     private ProgressBar _progrssBar;
+    private Button _showCountriesBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +32,23 @@ public class MainActivity extends AppCompatActivity {
 
         _worldDataTextView = findViewById(R.id.worldData_tv);
         _progrssBar = findViewById(R.id.progressCricle_id);
+        _showCountriesBtn = findViewById(R.id.showCountriesBtn_id);
+
         _progrssBar.setVisibility(View.VISIBLE);
+        //Fetch Data From internet Novel Covid 19 Api
+        FetchWholeWorldData();
+        //Button for going on Countries Data Activity
+        _showCountriesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,CountriesData.class);
+                startActivity(intent);
+            }
+        });
+
+    }
+
+    private void FetchWholeWorldData(){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://corona.lmao.ninja/v2/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -68,4 +87,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }
