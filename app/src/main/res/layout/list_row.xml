@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="1">
+
+    <ImageView
+        android:id="@+id/countryFlad_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2"/>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.4"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/countryName_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="Pakistan"/>
+        <TextView
+            android:id="@+id/cases_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cases"/>
+        <TextView
+            android:id="@+id/todayCases_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Today cases"/>
+        <TextView
+            android:id="@+id/deaths_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deaths"/>
+        <TextView
+            android:id="@+id/todayDeaths_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Today deaths"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.4"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/recovered_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recovered"/>
+        <TextView
+            android:id="@+id/active_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Active"/>
+        <TextView
+            android:id="@+id/critical_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Critical"/>
+        <TextView
+            android:id="@+id/casesPerMillion_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cases/million"/>
+        <TextView
+            android:id="@+id/deathsPerMillion_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deaths/Million"/>
+
+    </LinearLayout>
+
+</LinearLayout>
