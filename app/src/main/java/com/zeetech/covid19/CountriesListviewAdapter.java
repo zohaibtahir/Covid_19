@@ -12,14 +12,22 @@ import com.bumptech.glide.Glide;
 import com.zeetech.covid19.Models.AllCountriesData;
 import com.zeetech.covid19.Models.CountryDetail;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CountriesListviewAdapter extends BaseAdapter {
     private Context mContext;
     private List<AllCountriesData> _mResponseData;
+    private ArrayList<AllCountriesData> arraylist=null;
     public CountriesListviewAdapter(Context mContext,List<AllCountriesData> _mResponseData) {
         this.mContext = mContext;
         this._mResponseData = _mResponseData;
+        this.arraylist = new ArrayList<AllCountriesData>();
+        this.arraylist.addAll(_mResponseData);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -39,7 +47,7 @@ public class CountriesListviewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView _flagImage;
+        CircleImageView _flagImage;
         TextView _countrytxt,_casestxt,_todayCasestxt,_deathstxt,_todayDeathstxt,
                 _recoveredtxt,_activetxt,_criticaltxt,_casesPerMilliontxt,
                 _deathsPerMillion;
@@ -58,8 +66,7 @@ public class CountriesListviewAdapter extends BaseAdapter {
         _deathsPerMillion = v.findViewById(R.id.deathsPerMillion_id);
 
         CountryDetail getFlag =  _mResponseData.get(position).get_countryInfo();
-
-       Glide.with(mContext).load(getFlag.get_flag()).into(_flagImage);
+        Glide.with(mContext).load(getFlag.get_flag()).into(_flagImage);
         _countrytxt.setText(_mResponseData.get(position).get_country());
         _casestxt.setText("Cases: "+_mResponseData.get(position).get_cases());
         _todayCasestxt.setText("Today Cases: "+_mResponseData.get(position).get_todayCases());
@@ -73,5 +80,21 @@ public class CountriesListviewAdapter extends BaseAdapter {
 
 
         return v;
+    }
+    public void filter(String charText) {
+        charText = charText.toLowerCase(Locale.getDefault());
+        _mResponseData.clear();
+        if (charText.length() == 0) {
+            _mResponseData.addAll(arraylist);
+        }
+        else
+        {
+            for (AllCountriesData wp : arraylist) {
+                if (wp.get_country().toLowerCase(Locale.getDefault()).contains(charText)) {
+                    _mResponseData.add(wp);
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 }
